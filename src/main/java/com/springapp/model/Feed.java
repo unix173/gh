@@ -21,4 +21,7 @@ public class Feed {
     @JsonProperty("user")
     private User user;
 
+    @JsonProperty("timestamp_ms")
+    private long timestampMs;
+
 }

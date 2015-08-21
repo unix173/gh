@@ -38,7 +38,7 @@ public class TwitterStreamer {
         hosebirdEndpoint.followings(followings);
         hosebirdEndpoint.trackTerms(terms);
 
-        // These secrets should be read from a config file
+        // These secrets should be read from a configuration file
         Authentication hosebirdAuth = new OAuth1("c4IseJSBTDH4PjpauhL6ueZT4", "jLICMVNfbBkewyOkuVb7uzBxkitfsZueDq6DHHmWSoDubq68Oi", "3082911441-mX5BxS3LUB4RSKeJu3Cx8EnfHosOSGrf26pLmSt", "ZX4zT6vX7J3Xp8fz1YjxI28C8RBIzMOczlyVnruhBCYyJ");
 
         ClientBuilder builder = new ClientBuilder()
