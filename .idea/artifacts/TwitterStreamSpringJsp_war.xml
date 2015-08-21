@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TwitterStreamSpringJsp:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="untitled12345.war">
+      <element id="artifact" artifact-name="TwitterStreamSpringJsp:war exploded" />
+    </root>
+  </artifact>
+</component>
