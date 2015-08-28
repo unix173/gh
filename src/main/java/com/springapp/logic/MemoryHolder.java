@@ -30,6 +30,27 @@ public class MemoryHolder {
         return feeds;
     }
 
+    public List<Feed> getListOfFeedsAndClearMemory() {
+        List<Feed> ret = new LinkedList<Feed>();
+        ret.addAll(feeds);
+        feeds.clear();
+        return ret;
+    }
+
+    public List<Feed> getOldestByNumberAndRemoveThem(int number) {
+        List<Feed> ret = new LinkedList<Feed>();
+        if (number < 1) {
+            System.out.println("Number must be greater than 1");
+            return ret;
+        }
+        for (Iterator<Feed> iter = feeds.iterator(); iter.hasNext() && number > 0; --number) {
+            Feed feed = iter.next();
+            ret.add(feed);
+            feeds.remove(feed);
+        }
+        return ret;
+    }
+
     public List<Feed> getLatestFeedsByNumberOfFeeds(int number) {
         List<Feed> ret = new ArrayList<Feed>();
         if (number < 1) {
@@ -46,6 +67,7 @@ public class MemoryHolder {
         Feed feed = null;
         try {
             feed = new ObjectMapper().readValue(message, Feed.class);
+            feed.setDateInCorrectFormat();
         } catch (IOException e) {
             e.printStackTrace();
         }

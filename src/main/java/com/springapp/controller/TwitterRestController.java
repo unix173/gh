@@ -1,7 +1,7 @@
 package com.springapp.controller;
 
-import com.springapp.model.Feed;
 import com.springapp.logic.MemoryHolder;
+import com.springapp.model.Feed;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,24 +17,50 @@ import java.util.List;
 @RequestMapping("/api")
 public class TwitterRestController {
 
+    /**
+     * Method returns all items in list
+     *
+     * @return
+     */
     @RequestMapping(value = "/complete", produces = "application/json")
     public Deque<Feed> getAllFeeds() {
         return MemoryHolder.getInstance().getFeeds();
     }
 
+    /**
+     * Method returns specified number of latest items
+     * Future addition is added on the end of the queue
+     * Items are not removed
+     *
+     * @param number
+     * @return
+     */
     @RequestMapping(value = "/latest/{number}", produces = "application/json")
     public List<Feed> getLatestFeedsByNumberOfFeeds(@PathVariable("number") int number) {
         return MemoryHolder.getInstance().getLatestFeedsByNumberOfFeeds(number);
     }
 
-    @RequestMapping(value = "/complete/jsonp", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Deque<Feed> getAllFeedsAsJSONP() {
-        return MemoryHolder.getInstance().getFeeds();
+    /**
+     * Method returns specified number of items from the beginning of the list
+     * After the items are returned, they are removed from the list
+     *
+     * @param number
+     * @return
+     */
+    @RequestMapping(value = "/oldest/{number}", produces = "application/json")
+    public List<Feed> getOldestFeedsByNumberOfFeeds(@PathVariable("number") int number) {
+        return MemoryHolder.getInstance().getOldestByNumberAndRemoveThem(number);
     }
 
-    @RequestMapping(value = "/latest/jsonp/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Feed> getLatestFeedsByNumberOfFeedsAsJSONP(@PathVariable("number") int number) {
-        return MemoryHolder.getInstance().getLatestFeedsByNumberOfFeeds(number);
+    /**
+     * Method returns list of all items added so far
+     * After returning all items, the list is cleared
+     *
+     * @return
+     */
+    @RequestMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Feed> getListOfFeeds() {
+        return MemoryHolder.getInstance().getListOfFeedsAndClearMemory();
     }
 
 

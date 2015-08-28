@@ -23,6 +23,11 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class TwitterStreamer {
 
+    /**
+     * Task starts running after 5 seconds from starting the application
+     * It runs in the background for the whole time of application execution
+     */
+
     @Scheduled(fixedDelay = 5000)
     public void work() {
         /** Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */

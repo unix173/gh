@@ -1,0 +1,51 @@
+.main {
+
+}
+
+.feeds {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    margin: 0 auto;
+}
+
+.feedContainer {
+    margin: 0 auto;
+    border-bottom: thin solid #969696;
+}
+
+.feedContainer:last-child {
+    border-bottom: none;
+}
+
+.feed {
+    margin: 20px;
+}
+
+.img_rounded {
+    border-radius: 25%;
+}
+
+.name {
+    color: #23527c;
+}
+
+.username {
+    color: #939393;
+}
+
+.text {
+    white-space: pre-wrap;
+    color: black;
+}
+
+.time {
+    white-space: pre-wrap;
+    float: right;
+    font-size: 80%;
+}
+
+
+

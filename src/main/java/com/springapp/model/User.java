@@ -15,6 +15,9 @@ public class User {
     @JsonProperty("utc_offset")
     private int utcOffset;
 
+    @JsonProperty("name")
+    private String name;
+
     @JsonProperty("profile_image_url")
     private String profileImageUrl;
 

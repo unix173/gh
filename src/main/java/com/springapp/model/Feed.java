@@ -3,6 +3,11 @@ package com.springapp.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created by ivsi on 8/21/2015.
  */
@@ -23,5 +28,24 @@ public class Feed {
 
     @JsonProperty("timestamp_ms")
     private long timestampMs;
+
+    /**
+     * Method used to parse twitter date to appropriate formated string before sending json object
+     */
+    public void setDateInCorrectFormat() {
+        final String TWITTER = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+        SimpleDateFormat sf = new SimpleDateFormat(TWITTER, Locale.ENGLISH);
+        sf.setLenient(true);
+        Date date = null;
+        try {
+            date = sf.parse(createdAt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        sf = new SimpleDateFormat("dd MMM HH:mm:ss");
+        this.createdAt = sf.format(date);
+        System.out.println("Parsed: " + createdAt + "to: " + this.createdAt);
+    }
+
 
 }
