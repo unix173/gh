@@ -7,7 +7,7 @@ var app = angular.module('myApp', []);
 app.controller("AppController", function ($scope, $http, $interval) {
 
     $interval(function getNewDataAndAppendToFeedArray() {
-        $http.get('http://localhost:8080/api/oldest/5').
+        $http.get('http://localhost:8080/untitled12345/api/oldest/5').
             success(function (data, status, headers, config) {
                 $scope.tweets = data;
             }).
