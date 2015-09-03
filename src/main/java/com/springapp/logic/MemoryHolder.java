@@ -67,7 +67,7 @@ public class MemoryHolder {
         Feed feed = null;
         try {
             feed = new ObjectMapper().readValue(message, Feed.class);
-            feed.setDateInCorrectFormat();
+            feed.addaptFeedMessage();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -29,10 +29,13 @@ public class Feed {
     @JsonProperty("timestamp_ms")
     private long timestampMs;
 
-    /**
-     * Method used to parse twitter date to appropriate formated string before sending json object
-     */
-    public void setDateInCorrectFormat() {
+
+    public void addaptFeedMessage(){
+        setDateInCorrectFormat();
+        removeNewLinesFromMessage();
+    }
+
+    private void setDateInCorrectFormat() {
         final String TWITTER = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat sf = new SimpleDateFormat(TWITTER, Locale.ENGLISH);
         sf.setLenient(true);
@@ -46,6 +49,15 @@ public class Feed {
         this.createdAt = sf.format(date);
         System.out.println("Parsed: " + createdAt + "to: " + this.createdAt);
     }
+
+    private void removeNewLinesFromMessage() {
+        String newText = text.replaceAll("\n", " ");
+        System.out.println(text);
+        System.out.println(newText);
+        this.text = newText;
+    }
+
+
 
 
 }
