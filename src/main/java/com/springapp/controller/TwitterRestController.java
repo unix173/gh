@@ -1,7 +1,8 @@
 package com.springapp.controller;
 
-import com.springapp.logic.MemoryHolder;
+import com.springapp.processinglogic.TweetProcessor;
 import com.springapp.model.Feed;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,12 @@ public class TwitterRestController {
      *
      * @return
      */
+    @Autowired
+    private TweetProcessor tweetProcessor;
+
     @RequestMapping(value = "/complete", produces = "application/json")
     public Deque<Feed> getAllFeeds() {
-        return MemoryHolder.getInstance().getFeeds();
+        return tweetProcessor.getFeeds();
     }
 
     /**
@@ -37,7 +41,7 @@ public class TwitterRestController {
      */
     @RequestMapping(value = "/latest/{number}", produces = "application/json")
     public List<Feed> getLatestFeedsByNumberOfFeeds(@PathVariable("number") int number) {
-        return MemoryHolder.getInstance().getLatestFeedsByNumberOfFeeds(number);
+        return tweetProcessor.getLatestFeedsByNumberOfFeeds(number);
     }
 
     /**
@@ -49,7 +53,7 @@ public class TwitterRestController {
      */
     @RequestMapping(value = "/oldest/{number}", produces = "application/json")
     public List<Feed> getOldestFeedsByNumberOfFeeds(@PathVariable("number") int number) {
-        return MemoryHolder.getInstance().getOldestByNumberAndRemoveThem(number);
+        return tweetProcessor.getOldestByNumberAndRemoveThem(number);
     }
 
     /**
@@ -60,7 +64,7 @@ public class TwitterRestController {
      */
     @RequestMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Feed> getListOfFeeds() {
-        return MemoryHolder.getInstance().getListOfFeedsAndClearMemory();
+        return tweetProcessor.getListOfFeedsAndClearMemory();
     }
 
 

@@ -13,9 +13,9 @@
 <body ng-controller="AppController">
 
 <div ng-repeat="tweet in tweets" class="fontana scroll-down">
-    <div class="message media well col-md-6 col-md-offset-3 prev-one">
+    <div ng-class="message media well col-md-6 col-md-offset-3 focus">
         <figure class="pull-left media-object">
-            <img src={{tweet.user.profile_image_url}}>
+            <img class="img-thumbnail" src={{tweet.user.profile_image_url}}>
         </figure>
         <div class="media-body">
             <div class="media-heading"><cite> <span class="tweet.user.name">{{tweet.user.name}}</span>
