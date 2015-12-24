@@ -1,4 +1,3 @@
-# gh
-gh
+Twitter Wall App
 
-This is a Twitter Wall backend application made in Spring MVC.
+This is a Twitter Wall backend rest API made in Spring MVC.
